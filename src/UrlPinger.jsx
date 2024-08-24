@@ -8,7 +8,10 @@ const UrlPinger = () => {
     const fetchData = () => {
       fetch(`https://thetutors.onrender.com/reload/`)
         .then((response) => response.json())
-        .then((data) => console.log("Data received:", data))
+        .then((data) => {
+          console.log("Data received:", data);
+          setCount((prevCount) => prevCount + 1);
+        })
         .catch((error) => console.error("Error fetching data:", error));
     };
 
@@ -17,8 +20,8 @@ const UrlPinger = () => {
 
     // Set up interval to fetch data every 2 minutes (2 * 60 * 1000 ms)
     const intervalId = setInterval(fetchData, 2 * 60 * 1000);
-    
-    setCount(count => count + 1);
+
+    setCount((count) => count + 1);
     // Cleanup the interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
