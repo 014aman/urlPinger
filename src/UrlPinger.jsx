@@ -17,7 +17,8 @@ const UrlPinger = () => {
 
     // Set up interval to fetch data every 2 minutes (2 * 60 * 1000 ms)
     const intervalId = setInterval(fetchData, 2 * 60 * 1000);
-
+    
+    setCount(count => count + 1);
     // Cleanup the interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
